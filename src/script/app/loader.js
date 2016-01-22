@@ -10,10 +10,10 @@
       return;
     }
     
-    app.LOADED = true;
     wquery.hide('.wspecs');
-    if (false) {
+    if (!app.LOADED) {
      initialize();
+     app.LOADED = true;
    }
    else {
      loadPage();

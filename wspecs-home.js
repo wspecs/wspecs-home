@@ -13,7 +13,7 @@ var livereload = require('livereload');
 // @port: where the application is running
 // @apth: sub_url for where the application migth run
 // @base: full http path for the application.
-var port = 7300;
+var port = 7302;
 var path = ''; // '/sub_url'
 var base = 'http://localhost'  + ':' + port + path + '/';
 if (process.argv[2] && process.argv[2] === 'prod'){
@@ -42,6 +42,9 @@ require('./lib/REST')(app, path, port, db, {
 // Allow live reload in server
 // Be sure to install the extension for your web-browser
 // Use during development
-var reloadServer = livereload.createServer();
-reloadServer.config.exts.push("ejs");
-reloadServer.watch(__dirname + '/www'); 
+
+if (process.argv[2] && process.argv[2] !== "dev") {
+  var reloadServer = livereload.createServer();
+  reloadServer.config.exts.push("ejs");
+  reloadServer.watch(__dirname + '/www'); 
+}
