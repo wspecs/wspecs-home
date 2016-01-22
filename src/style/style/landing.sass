@@ -1,0 +1,40 @@
+.welcome
+  .center
+    position: relative
+    top: 35%
+    transform: translateY(-50%)
+  .bottom
+    position: absolute
+    bottom: 50px
+    left: 50%
+    transform: translateX(-50%)
+
+  height: calc(100vh - 150px)
+  clear: both
+  .center
+    h1, p
+      text-align: center
+    h1
+      +font-weight(100)
+      +responsive('font-size', 3em, 1.2)
+      strong
+        color: $offset_color
+
+  p
+    +responsive('font-size', 1.5em, 1.2)
+    padding-top: 12px
+    opacity: .5
+  
+  button
+    background: transparent
+    border: 0px solid $offset_color
+
+#triangle
+  cursor: pointer
+  display: inline-block
+  border-right: 3px solid $offset_color
+  border-bottom: 3px solid $offset_color
+  width: 30px
+  height: 30px
+  +border-radius(3px)
+  transform: rotate(45deg)

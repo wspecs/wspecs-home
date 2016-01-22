@@ -1,0 +1,39 @@
+.top-bar
+  height: 5px
+  width: 100%
+  background: $offset_color
+
+.landing
+  min-height: 100%
+  min-width: 100%
+
+.header
+  padding: 24px
+  +breakpoint(mobile)
+    text-align: center
+
+img.logo
+  width: 48px
+  +breakpoint(mobile)
+    width: 64px
+
+.right
+  float: right
+  +breakpoint(mobile)
+    display: none
+
+nav
+  display : inline-block
+  margin-right: 48px
+  ul
+    list-style-type: none
+    margin-top: 15px
+    li
+      padding: 0 15px 0 0
+      display: inline 
+      a
+        color: $foreground
+        text-decoration: none
+    li.active a
+      color: $offset_color
+      font-weight: bold

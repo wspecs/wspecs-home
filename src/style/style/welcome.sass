@@ -1,0 +1,56 @@
+=active()
+  color: $background
+  text-shadow: none
+  strong
+    color: $offset_color
+
+=blur()
+  text-shadow: 0 0 5px rgba(0,0,0,0.8)
+  color: transparent
+
+=code_active()
+  color: $background
+  text-shadow: none
+  strong
+    color: $background
+    font-weight: 400
+
+#welcome
+  background: #ccc
+
+  .col-2-3
+    border-left: 1px solid $offset_color
+    padding-left: 15px
+    +breakpoint(mobile)
+      padding-left: 0
+      border-left: 0
+      border-top: 1px solid $offset_color
+  h2, p, span
+    opacity: 0
+  h2, strong, em
+    color: black
+  .code
+    span:hover
+      +code_active()
+    span
+      cursor: pointer
+      &.active
+        +code_active()
+      display: block
+      +breakpoint(mobile)
+        display: inline-block
+        padding-right: 16px
+        margin-bottom: 0px
+      text-align: right
+      +responsive('font-size', 1.2em, 1.2)
+      margin-bottom: 14px
+      +blur
+      strong
+        +blur()
+  .info
+    p
+      color: $background
+      padding-top: .2em
+      +responsive('margin-bottom', 1em, 1.2)
+    p:first-child
+      padding-top: 0

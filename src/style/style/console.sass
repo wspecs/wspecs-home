@@ -1,0 +1,27 @@
+.console
+  position: absolute
+  bottom: 20px
+  left: 20px
+  text-align: left
+
+.line p, .past-line p
+  color: white
+  font-family: $console_font
+  font-size: 12px
+  margin: 5px 0 0 5px
+  white-space: nowrap
+  overflow: hidden
+  width: 200px
+
+.past-line p c 
+  font-weight : bold
+  color: $offset_color
+
+.line p
+  animation: type .6s steps(50, end) 1
+
+.past-line p
+  color: white
+
+::selection
+  background: gray

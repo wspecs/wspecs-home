@@ -1,0 +1,122 @@
+/**
+ * Rotates all axis (x,y,z) by a full circle.
+ */
++keyframes(rotate)
+  0%
+    +cross_browsers(transform, rotateX(0) rotateY(0) rotateZ(0))
+  100%
+    +cross_browsers(transform, rotateX(360deg) rotateY(360deg) rotateZ(360deg))
+
+/**
+ * Give the impression that someone was typing.
+ */
++keyframes(type)
+  0%
+    width: 0
+  50%
+    +cross_browsers(transform, scale(1.01))
+  100%
+    width: 100
+    +cross_browsers(transform, scale(1))
+
+/**
+ * Quickly hide an element.
+ */
++keyframes(quickhide)
+  0%
+    opacity: 1
+  10%
+    opacity: 0
+  100%
+    opacity: 0
+
+/**
+ * Gradually hide an element.
+ */
++keyframes(hide)
+  0%
+    opacity: 1
+  50%
+    opacity: 0
+  100%
+    opacity: 0
+
+/**
+ * Graudually show an element.
+ */
++keyframes(show)
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
++keyframes(slide)
+  0%
+    +cross_browsers(transform, scale(.75))
+  25%
+    +cross_browsers(transform, scale(1))
+  75%
+    +cross_browsers(transform, scale(1))
+
+/**
+ * Load the page like an old TV shutting down.
+ */
++keyframes(start_page)
+  0%
+    height: 100%
+  30%
+    height: 4px 
+    top: 50%
+    left : 25%
+    width: 50%
+    background: white
+  
+  50%
+    height: 1px 
+    top: 50%
+    left : 0%
+    width: 100%
+    background : white
+
+/**
+ * Different animation to reveal different element espacially texts.
+ */
++keyframes(reveal_right)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateX(10%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateX(0))
+
++keyframes(reveal_left)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateX(-20%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateX(0))
+
++keyframes(reveal_top)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateY(-300%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateY(0))
+
++keyframes(reveal_bottom)
+  0%
+    opacity: 0
+    +cross_browsers(transform, translateY(300%))
+  100%
+    opacity: 1
+    +cross_browsers(transform, translateY(0))
+
++keyframes(reveal_within)
+  0%
+    opacity: 0
+    +cross_browsers(transform, scale(0.4))
+  100%
+    opacity: 1
+    +cross_browsers(transform, scale(1))

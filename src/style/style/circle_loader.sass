@@ -1,0 +1,56 @@
+/**
+ * Load for the main page.
+ */
+.loader-container
+  width: $loader_width
+  height: $loader_width
+  position: absolute
+  @include center
+    
+.loader-container-bl
+  width: $loader_width
+  height: $loader_width
+  right: 0
+  bottom: 0
+  position: absolute
+  
+.view
+  @include view($loader_container_width)
+    
+.plane-loader
+  @include plane($side, $side)
+  
+  &.main
+    @include center
+    transform: rotateX(60deg) rotateZ(-30deg)
+    animation: rotate 5s infinite linear
+      
+    .circle
+      width: $side
+      height: $side
+      position: absolute
+      transform-style: preserve-3d
+      +border-radius(100%)
+      border: 1px solid white
+      box-sizing: border-box
+      box-shadow: 0 0 1px rgba($foreground, 1), inset 0 0 1px rgba($foreground, 1)
+  
+      &::before, &::after
+        content: ''
+        display: block
+        @include center
+        width: 7%
+        height: 7%
+        +border-radius(100%)
+        background: rgba($foreground, 1)
+        box-sizing: border-box
+        box-shadow: 0 0 10px 1px rgba($offset_color, 1)
+
+      &::before
+        transform: translateZ(-$l)
+      &::after
+        transform: translateZ($l)
+  
+      @for $i from 1 through $circle_count
+        &:nth-child(#{$i})
+          transform: rotateZ($i / $circle_count * 360deg) rotateX(63.435deg)

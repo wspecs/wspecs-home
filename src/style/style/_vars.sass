@@ -1,0 +1,41 @@
+$background : #142134
+$offset_color : #ff6c60
+$foreground : white
+$responsive_factor: 1.05
+
+/**
+ * Blog variables
+ */
+$blog_bg: #1D222B
+$blog_entry_odd: #19222E
+$blog_entry: #1D2F49
+
+/**
+ * Home page
+ */
+$loader_width : 350px
+$side: $loader_width/3
+$l: $loader_width/4
+$loader_container_width: 400
+$console_font: "Courier"
+$circle_count : 10
+$num: 10
+$dur: 10
+
+@mixin plane($w, $h)
+  width: $w
+  height: $h
+  transform-style: preserve-3d
+  
+@mixin view($p)
+  width : $loader_width
+  height : $loader_width
+  perspective: $p
+
+@mixin center
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  margin: auto 

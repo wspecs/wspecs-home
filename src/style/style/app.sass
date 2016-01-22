@@ -1,0 +1,32 @@
+#apps
+  .container
+    padding-bottom: 0
+  background: $foreground
+  .col-1-3
+    text-align: left
+  div[class*="col-2"]
+    padding-bottom: 0
+  h2,h3, h4, p, span, i, a
+    color: black
+    text-align: left
+  img
+    opacity: 0
+  h3
+    +responsive('font-size', 1.3em, $responsive_factor)
+  h4
+    font-weight: 100
+    +responsive('padding-top', 10px, $responsive_factor)
+    +responsive('font-size', 1.1em, $responsive_factor)
+  p
+    +responsive('padding-top', 32px, $responsive_factor)
+    +responsive('font-size', 0.9em, $responsive_factor)
+    +responsive('line-height', 1.7em, $responsive_factor)
+  .action-button
+    +action_button($background)
+  .action-button:hover
+    +action_button_hover()
+  .features
+    padding: 24px
+    span
+      +responsive('padding-bottom', 12px, $responsive_factor)
+      display: block

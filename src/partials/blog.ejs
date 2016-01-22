@@ -1,0 +1,18 @@
+<div id="blog">
+  <div class="container">
+    <h2>Read The Latest Blog</h2>
+    <div class="row">
+      <% for (var i=0; i < home.blog.length; i++) { %>
+      <div class="col-1-3">
+        <img src="img/blog/<%= home.blog[i].img %>" alt="">
+        <div class="summary">
+          <h3><%= home.blog[i].title %></h3>
+          <h6><i class="icon-author"></i> <%= home.blog[i].author %> <span><i class="icon-date"> </i><%= home.blog[i].time %></span></h6>
+          <p><%= home.blog[i].summary %></p>
+          <a class="action-button" href="<%= home.blog[i].link %>" target="_blank">Read</a>
+        </div>
+      </div>
+      <% }%>
+    </div>
+  </div>
+</div>

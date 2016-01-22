@@ -1,0 +1,83 @@
+/**
+ * Define different breakpoint for the applicaiton. This function can be use
+ * to generate media queries.
+ */
+=breakpoint($point)
+  @if $point == desktop // Large
+    @media (min-width : 1824px)
+      @content
+  @else if $point == laptop
+    @media (min-width : 1024px) and (max-width : 1824px)
+      @content
+  @else if $point == tablet
+    @media (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1)
+      @content
+  @else if $point == mobile
+    @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 1)
+      @content
+
+/**
+ * Unify action button for the application. 
+ */
+=action_button_hover()
+  color: red
+=action_button($button_color)
+  opacity: 0
+  +responsive('padding', 10px, 1.1)
+  +responsive('font-size', 0.9em, 1.1)
+  background: transparent
+  +border-radius(4px)
+  font-weight: 300
+  border: $button_color 1px solid
+
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+/**
+ * Automatically generate style for multiple devices.
+ */
+=responsive($style, $size, $factor)
+  +breakpoint(desktop)
+    #{$style}: $size * $factor
+  +breakpoint(laptop)
+    #{$style}:  $size
+  +breakpoint(tablet)
+    #{$style}: $size / $factor
+  +breakpoint(mobile)
+    #{$style}: $size / ($factor * $factor)
+
+/**
+ * Create an attribute that's also reponsive for mobile devices.
+ */
+=mobile_ready($style, $regular, $mobile)
+  #{$style}: $regular
+  +breakpoint(mobile)
+    #{$style}: $mobile
+
+/**
+ * Create attribute that will match the top four popular browers.
+ */
+=cross_browsers($style, $value)
+  -webkit-#{$style}: $value
+  -moz-#{$style}: $value
+  -o-#{$style}: $value
+  #{$style}: $value
+
+/**
+ * Facilitates cross browser support for animations.
+ */
+=keyframes($animationName)
+  @-webkit-keyframes #{$animationName}
+    @content
+
+  @-moz-keyframes #{$animationName}
+    @content
+
+  @-o-keyframes #{$animationName}
+    @content
+
+  @keyframes #{$animationName}
+    @content
