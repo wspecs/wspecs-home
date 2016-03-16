@@ -1,6 +1,21 @@
-(function(server){
+(function(){
 
+  /**
+   * @type {string}
+   */
+  var server = app.serverUrl;
+
+  /**
+   * Perform GET and POST requests.
+   * @param {!string} link
+   * @param {!Requester~requestCallback} cb
+   * @param {Object} json
+   */
   function request(link, cb, json){
+    if (!server) {
+      console.log('%c Error', 'font-size: 24, color: red');
+      return;
+    }
     var type;
     if (json !== undefined) {
       type = "POST";
@@ -22,7 +37,15 @@
     xhr.onloadend = function (e) {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          cb(xhr.responseText);
+          var header = xhr.getResponseHeader('Content-Type').toLowerCase();
+          var json_header = 'application/json';
+          if (header.indexOf(json_header) > -1) {
+            var data = JSON.parse(xhr.responseText);
+            cb(data);
+          }
+          else {
+            cb(xhr.responseText);
+          }
         } else {
           cb('');
         }
@@ -32,4 +55,4 @@
 
   window.request = request;
 
-})("http://servone.wspecs.com/wapp/");
+})();

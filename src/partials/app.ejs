@@ -3,18 +3,16 @@
     <h2>Latest App</h2>
     <div class="row">
       <div class="col-1-3">
-        <h3><%= home.app.title %></h3>
-        <h4><%= home.app.type %></h4>
-        <p><%= home.app.summary %></p>
+        <h3>Title</h3>
+        <h4>Type</h4>
+        <p>Summary</p>
         <div class="features">
-          <% for (var index in home.app.features) {%>
-          <span><i class="icono-check"></i> <%= home.app.features[index]%></span>
-          <% }%>
+          <span><i class="icono-check"></i> Feature 1</span>
         </div>
-        <a href="http://apps.wspecs.com/hl" class="action-button" target="_blank">Take A Look &raquo;</a>
+        <a href="LINK" class="action-button" target="_blank">Take A Look &raquo;</a>
       </div>
       <div class="col-2-3">
-        <img src="<%= home.app.preview %>" alt="Latest Application" width="100%">
+        <img alt="Latest Application" width="100%">
       </div>
     </div>
   </div>

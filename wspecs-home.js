@@ -1,50 +1,50 @@
-// Main file file of the application
-// Make use of other library to start the application
+(function () {
+  var express = require('express');
+  var app = express();
+  var bodyParser = require('body-parser');
+  var db = require('./data/handler');
+  var livereload = require('livereload');
+
+  var port = 7302;
+  var url = {
+    dev: 'http://servone.wspecs.com',
+    prod: 'http://wspecs.com'
+  };
+  var api = {
+    dev: "http://servone.wspecs.com:7128/wapp/app",
+    prod: "https://servone.wspecs.com/wapp/app"
+  };
 
 
-// Exernal node module
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var db = require('./data/handler');
-var livereload = require('livereload');
+  if (!process.argv[2] || process.argv[2] !== 'prod') {
+    port += 1;
+  }
 
-// Application variables
-// @port: where the application is running
-// @apth: sub_url for where the application migth run
-// @base: full http path for the application.
-var port = 7302;
-var path = ''; // '/sub_url'
-var base = 'http://localhost'  + ':' + port + path + '/';
-if (process.argv[2] && process.argv[2] === 'prod'){
-	base = 'http://servone.wspecs.com' + path + '/';
-}
+  var path = ''; // '/sub_url'
+  var base = url.dev  + ':' + port + path + '/';
+  var servUrl = api.dev;
+  if (process.argv[2] && process.argv[2] === 'prod'){
+    base = url.prod + path + '/';
+    servUrl = api.prod;
+    require('./lib/reload')('wspecs-home', base);
+  }
 
-// Set the public path fo the application
-app.use(path, express.static(__dirname + '/www'));
-app.use(path, express.static(__dirname + '/static'));
-// Set the view path for ejs render
-app.set('views',  __dirname + '/www/views');
+  require('./lib/frontend-config')(app, express, bodyParser, path);
+  require('./lib/REST')(app, path, port, db, {
+    base : base,
+    title : "Wspecs | Home",
+    description : "Wspecs home page",
+    image : base + 'img/preview.jpg',
+    servUrl: servUrl
+  });
 
-// Initialize body parser for POST methods
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+  // Allow live reload in server
+  // Be sure to install the extension for your web-browser
+  // Use during development
 
-// Initialize the application by using a RESTful api
-require('./lib/REST')(app, path, port, db, {
-	base : base,
-  title : "Wspecs | Home",
-  description : "Description Goes Here",
-  image : base + 'img/preview.jpg',
-  serv: "http://servone.wspecs.com/wapp/app"
-});
-
-// Allow live reload in server
-// Be sure to install the extension for your web-browser
-// Use during development
-
-if (process.argv[2] && process.argv[2] !== "dev") {
-  var reloadServer = livereload.createServer();
-  reloadServer.config.exts.push("ejs");
-  reloadServer.watch(__dirname + '/www'); 
-}
+  if (process.argv[2] && process.argv[2] !== "dev") {
+    var reloadServer = livereload.createServer();
+    reloadServer.config.exts.push("ejs");
+    reloadServer.watch(__dirname + '/www'); 
+  }
+})();

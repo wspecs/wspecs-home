@@ -39,6 +39,10 @@ module.exports = function(grunt) {
     require('./src/wsGrunt/task/spacer')(grunt, config);
   });
 
+  grunt.registerTask("prodPrep", function() {
+    require('./src/wsGrunt/task/prod')(grunt, config);
+  });
+
   // Load all tasks
   require('matchdep').filterDev('grunt-*','package.json').forEach(grunt.loadNpmTasks);
 
@@ -46,5 +50,7 @@ module.exports = function(grunt) {
   // To run the application use the command below
   // > grunt 
   grunt.registerTask('default', ['ejs', 'sasss', 'syntax', 'script', 'tests', 'wsconnect', 'watch']);
+  grunt.registerTask('dev', ['default']);
+  grunt.registerTask('prod', ['ejs', 'sasss', 'syntax', 'script', 'tests', 'prodPrep']);
 };
 

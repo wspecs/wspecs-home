@@ -1,12 +1,19 @@
-window.scroll = (function() {
+(function() {
 
-  var elementPosition = function(a) {
+  /**
+   * @param {HTMLElement} element
+   * @return {boolean}
+   */
+  var elementPosition = function(element) {
     return function() {
-      return a.getBoundingClientRect().top;
+      return element.getBoundingClientRect().top;
     };
   };
 
-  var scrolling = function( elementID ) {
+  /**
+   * @param {HTMLElement} element
+   */
+  function scrolling( elementID ) {
 
     var el = document.getElementById( elementID );
     elPos = elementPosition( el );
@@ -39,7 +46,7 @@ window.scroll = (function() {
     scroller();
   };
 
-  return {
+  window.scroll = {
     To: scrolling
   }
 
